@@ -1,5 +1,5 @@
-import { fromEvent, interval, merge, ObjectUnsubscribedError, Observable, Subscription} from "rxjs";
-import { map, filter, mergeMap, takeUntil, scan, first} from 'rxjs/operators';
+import { fromEvent, interval, merge, Observable} from "rxjs";
+import { map, filter, mergeMap, takeUntil, scan} from 'rxjs/operators';
 
 function spaceinvaders(): void {  
   //Created as the general object for game objects such as ship
