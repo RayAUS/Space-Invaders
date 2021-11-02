@@ -245,9 +245,7 @@ function spaceinvaders(): void {
   };
   //This function returns the closest enemy row to the ship, this is to check if the enemy's are close enough to the ship to result in a gameOver
   function closestEnemy(array: ReadonlyArray<ObjectState>): number{
-    let closest = 0
-    array.forEach(a => a.row > closest ? closest = a.row : closest = closest)
-    return closest;
+    return array.reduce(((acc, currVal) => {if (currVal.row > acc) {acc = currVal.row}; return acc}), 0);
   }
 
   //This function handles collisions for all bullets with ships and enemys
