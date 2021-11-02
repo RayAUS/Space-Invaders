@@ -202,7 +202,7 @@ function spaceinvaders(): void {
   //Interval observable stream which outputs a new Tick class object, the interval starts at around 10ish, but as the game progresses, and the levels get harder, the tick becomes faster which means enemy objects move faster. 
   tickInterval: Observable<Tick> = interval(10 - (Math.log(level +1)*2)).pipe(map(elapsed =>new Tick(elapsed))),
   //Interval observable stream which outputs a new EnemyShoot class object, the interval also becomes faster as the level gets harder. Also the enemiesshoot will be called with a ~50% chance whenever an observable is in the stream 
-  enemyBullets: Observable<EnemyShoot> = interval(1000 - (Math.log(level +1)*120)).pipe(filter(event => Math.random() > 0.55),map(_=>new EnemyShoot())),
+  enemyBullets: Observable<EnemyShoot> = interval(1000 - (Math.log(level +1)*120)).pipe(filter(event => Math.random() > 0.65),map(_=>new EnemyShoot())),
 
 
   //This function takes in the objects that the observable streams output and accordingly deals with them by identifying the classes, made sure if an object is created to increment object count
@@ -245,7 +245,7 @@ function spaceinvaders(): void {
   };
   //This function returns the closest enemy row to the ship, this is to check if the enemy's are close enough to the ship to result in a gameOver
   function closestEnemy(array: ReadonlyArray<ObjectState>): number{
-    return array.reduce(((acc, currVal) => {if (currVal.row > acc) {acc = currVal.row}; return acc}), 0);
+    return array.reduce(((acc, currVal) => {return (currVal.row > acc) ? acc = currVal.row : acc}), 0);
   }
 
   //This function handles collisions for all bullets with ships and enemys
